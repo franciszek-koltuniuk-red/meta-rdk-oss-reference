@@ -290,7 +290,7 @@ do_install:append() {
     # Don't ship initrd specific services into rootfs to avoid the conflict with the main services
     rm -f ${D}${systemd_system_unitdir}/NetworkManager-config-initrd.service
     rm -f ${D}${systemd_system_unitdir}/NetworkManager-initrd.service
-    rm -f ${D}${systemd_system_unitdir}/NetworkManager-wait-online-initrd.servicei
+    rm -f ${D}${systemd_system_unitdir}/NetworkManager-wait-online-initrd.service
 }
 
 inherit syslog-ng-config-gen

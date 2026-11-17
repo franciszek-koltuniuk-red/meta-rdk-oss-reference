@@ -10,6 +10,8 @@ Date:   Tue Jun 9 11:28:15 2026 +0200
     Add a check in create_dhclient_config() that rejects hostnames
     containing characters unsafe for dhclient.conf.
 
+CVE: CVE-2026-10805
+
 diff --git a/src/core/dhcp/nm-dhcp-dhclient.c b/src/core/dhcp/nm-dhcp-dhclient.c
 index 7e00599cd8..99421b35fd 100644
 --- a/src/core/dhcp/nm-dhcp-dhclient.c
