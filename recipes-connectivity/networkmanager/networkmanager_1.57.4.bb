@@ -276,6 +276,10 @@ do_install:append() {
 
     ln -sf /opt/NetworkManager/system-connections ${D}${sysconfdir}/NetworkManager/
     ln -sf /opt/secure/NetworkManager/system-connections ${D}${sysconfdir}/NetworkManager/
+    rm -f ${D}${systemd_system_unitdir}/NetworkManager-wait-online.service
+    rm -f ${D}${systemd_system_unitdir}/NetworkManager-wait-online-initrd.service
+    rm -f ${D}${systemd_system_unitdir}/NetworkManager-initrd.service
+    rm -f ${D}${systemd_system_unitdir}/NetworkManager-config-initrd.service
 
     # Enable iwd if compiled
     if ${@bb.utils.contains('PACKAGECONFIG','iwd','true','false',d)}; then
@@ -286,11 +290,6 @@ do_install:append() {
     if ${@bb.utils.contains('PACKAGECONFIG','dhcpcd','true','false',d)}; then
         install -Dm 0644 ${UNPACKDIR}/enable-dhcpcd.conf ${D}${nonarch_libdir}/NetworkManager/conf.d/enable-dhcpcd.conf
     fi
-
-    # Don't ship initrd specific services into rootfs to avoid the conflict with the main services
-    rm -f ${D}${systemd_system_unitdir}/NetworkManager-config-initrd.service
-    rm -f ${D}${systemd_system_unitdir}/NetworkManager-initrd.service
-    rm -f ${D}${systemd_system_unitdir}/NetworkManager-wait-online-initrd.servicei
 }
 
 inherit syslog-ng-config-gen
